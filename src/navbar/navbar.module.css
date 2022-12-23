@@ -1,0 +1,31 @@
+.navbarContainer {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  padding: 15px 10px;
+  border-bottom: 1px solid rgba(224, 221, 221, 0.5);
+  margin: 0 auto;
+}
+
+.logo {
+  width: 25px;
+  height: 25px;
+}
+
+.title {
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  margin-left: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .navbarContainer {
+    padding: 15px 20px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .navbarContainer {
+    padding: 15px 30px;
+  }
+}

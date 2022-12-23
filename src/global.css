@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Inter&display=swap");
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(to top, #ace0f9 0%, #fff1eb 100%) fixed;
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  max-width: 650px;
+  padding: 20px;
+  margin: 0 auto;
+}
