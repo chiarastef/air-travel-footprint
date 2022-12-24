@@ -7,7 +7,7 @@ import { useFetchAirportCode } from "./hooks/useFetchAirportCode";
 import { useFetchFootprint } from "./hooks/useFetchFootprint";
 
 const App = () => {
-  // const { code } = useFetchAirportCode("Rome");
+  //const { code } = useFetchAirportCode("Rome");
   // const { footprint } = useFetchFootprint({
   //   origin: "COR",
   //   destination: "COS",

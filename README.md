@@ -2,7 +2,7 @@
 
 ## Link
 
-<!-- [Project URL]() (hosted on Netlify) -->
+[Project URL](https://air-travel-footprint.netlify.app/) (hosted on Netlify)
 
 ## Screenshot
 
@@ -20,6 +20,7 @@
 - Semantic HTML5 markup
 - CSS custom properties and media queries
 - [CSS Modules](https://github.com/css-modules/css-modules)
+- [Material UI](https://mui.com/)
 - JavaScript
 - React
 - [Vite](https://vitejs.dev/)

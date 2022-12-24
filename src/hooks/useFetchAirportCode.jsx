@@ -13,13 +13,13 @@ export const useFetchAirportCode = (city) => {
       .then(function (response) {
         // handle success
         const resp = response.data;
-        setCode(resp.filter((obj) => obj["city"] === city));
+        setCode(resp.filter((obj) => obj["city"].startsWith(city)));
       })
       .catch(function (error) {
         // handle error
         console.log(error);
       });
-  }, []);
+  }, [city]);
 
-  return { code };
+  return [code];
 };
