@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap");
 
-/* Reset */
+:root {
+  --accent-color: #1565c0;
+  --nav-shadow: 1px 1px 2px #bbbbbb;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

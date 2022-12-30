@@ -1,5 +1,11 @@
 # Air Travel Footprint
 
+This is the final project from the Front End Development master offered by the online course provider [Start2Impact](https://www.start2impact.it/).
+
+During the course I had the chance to learn HTML, CSS, Sass, Bootstrap, JavaScript, React, Webpack and Vite.
+I decided to complete the course by building a website from scratch using React: a site to calculate the carbon footprint of flights.
+I chose this project because I believe that measuring our carbon footprint is the first step we can take to improve and adapt our lifestyle in order to reduce our emissions.
+
 ## Link
 
 [Project URL](https://air-travel-footprint.netlify.app/) (hosted on Netlify)
@@ -11,9 +17,13 @@
 
 ## Project
 
-<!-- Users should be able to:
+Users should be able to:
 
-- -->
+- View the optimal layout for the content depending on their device’s screen size
+- Type the name of a city in the from and to input fields to see a list of airports to select from and click/tap on the one they want to select
+- Type the number of passengers and select the cabin class
+- Click or tap on the "calculate" button to see the footprint of that flight
+- See a table with information about the departure and arrival airports, the passenger(s), the cabin class and the footprint per passenger and the total footprint
 
 ## Built with
 
@@ -24,11 +34,11 @@
 - JavaScript
 - React
 - [Vite](https://vitejs.dev/)
-<!-- - [React Router](https://reactrouter.com/en/main) -->
 - [GoClimate API](https://api.goclimate.com/docs)
 - [Airport codes database](https://gist.github.com/tdreyno/4278655)
 - [axios](https://axios-http.com/)
-- [Flaticon](https://www.flaticon.com/) for the favicon
+- [Flaticon](https://www.flaticon.com/) for the favicon and the logo
+  <!-- - [React Router](https://reactrouter.com/en/main) -->
   <!-- - [React Spinners](https://www.npmjs.com/package/react-spinners) -->
   <!-- - [classnames](https://www.npmjs.com/package/classnames) -->
 

@@ -1,0 +1,37 @@
+.results {
+  margin-top: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.gridItem {
+  padding: 10px 5px;
+  border-bottom: 1px solid #a2a1a1;
+}
+
+.footprint {
+  grid-column: 1/-1;
+  display: grid;
+  gap: 10px;
+}
+
+.gridItem > div:first-child {
+  color: var(--accent-color);
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+@media screen and (min-width: 700px) {
+  .results {
+    margin-top: 30px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footprint {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footprint > div:last-child {
+    padding: 0 5px;
+  }
+}

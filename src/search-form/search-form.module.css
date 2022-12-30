@@ -7,6 +7,7 @@
 }
 
 .formElement > div {
+  text-align: left;
   margin: 0;
 }
 
@@ -20,10 +21,6 @@
   text-align: left;
   font-size: 13px;
   background-color: #dedede;
-  width: auto;
-  margin-left: auto;
-  margin-right: auto;
-  height: auto;
   max-height: 60px;
   border-radius: 0 0 4px 4px;
   padding: 5px 7px;
@@ -32,6 +29,15 @@
   overflow-x: hidden;
   z-index: 1;
   cursor: pointer;
+}
+
+.dropdown > li {
+  padding: 2px 0;
+}
+
+.dropdown > li:not(li:last-of-type) {
+  border-bottom: 1px solid #cfcece;
+  margin-bottom: 2px;
 }
 
 @media screen and (min-width: 450px) {

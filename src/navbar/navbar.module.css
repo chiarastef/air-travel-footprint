@@ -9,12 +9,14 @@
 
 .logo {
   width: 25px;
-  height: 25px;
+  filter: drop-shadow(var(--nav-shadow));
 }
 
 .title {
   font-family: "Caveat", cursive;
   font-size: 22px;
+  color: var(--accent-color);
+  text-shadow: var(--nav-shadow);
   margin-left: 12px;
 }
 
