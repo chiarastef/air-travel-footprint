@@ -15,7 +15,9 @@ import style from "./search-form.module.css";
 
 const SearchForm = () => {
   const [from, setFrom] = React.useState("");
+  const [isFromSelected, setIsFromSelected] = React.useState(false);
   const [to, setTo] = React.useState("");
+  const [isToSelected, setIsToSelected] = React.useState(false);
   const [isFrom, setIsFrom] = React.useState(null);
   const [passengers, setPassengers] = React.useState("");
   const [cabinClass, setCabinClass] = React.useState("");
@@ -59,8 +61,10 @@ const SearchForm = () => {
   const selectItem = (e) => {
     if (e.target.parentNode.id === "fromSuggestions") {
       setFrom(e.target.innerText);
+      setIsFromSelected(true);
     } else if (e.target.parentNode.id === "toSuggestions") {
       setTo(e.target.innerText);
+      setIsToSelected(true);
     }
   };
 
@@ -71,9 +75,11 @@ const SearchForm = () => {
     const queryCapitalized = firstLetter + query.substring(1);
 
     if (e.target.id === "from") {
+      setIsFromSelected(false);
       setIsFrom(true);
       setFrom(queryCapitalized);
     } else if (e.target.id === "to") {
+      setIsToSelected(false);
       setIsFrom(false);
       setTo(queryCapitalized);
     }
@@ -115,7 +121,7 @@ const SearchForm = () => {
               onChange={handleChange}
               ref={fromInput}
             />
-            {from && fromInfo.length > 0 && (
+            {from && !isFromSelected && (
               <ul
                 id="fromSuggestions"
                 className={style.dropdown}
@@ -124,7 +130,7 @@ const SearchForm = () => {
                 {fromInfo.map((item) => {
                   return (
                     <li key={nanoid()} onClick={selectItem}>
-                      {item.code} - {item.name} ({item.city})
+                      {item.iataCode} - {item.name} ({item.address.cityName})
                     </li>
                   );
                 })}
@@ -144,7 +150,7 @@ const SearchForm = () => {
               onChange={handleChange}
               ref={toInput}
             />
-            {to && toInfo.length > 0 && (
+            {to && !isToSelected && (
               <ul
                 id="toSuggestions"
                 className={style.dropdown}
@@ -153,7 +159,7 @@ const SearchForm = () => {
                 {toInfo.map((item) => {
                   return (
                     <li key={nanoid()} onClick={selectItem}>
-                      {item.code} - {item.name} ({item.city})
+                      {item.iataCode} - {item.name} ({item.address.cityName})
                     </li>
                   );
                 })}
