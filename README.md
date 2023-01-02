@@ -1,6 +1,6 @@
-# Air Travel Footprint
+# Air Travel Footprint Calculator
 
-This is the final project from the Front End Development master offered by the online course provider [Start2Impact](https://www.start2impact.it/).
+This is the final project from the Front End Development Master offered by the online course provider [Start2Impact](https://www.start2impact.it/).
 
 During the course I had the chance to learn HTML, CSS, Sass, Bootstrap, JavaScript, React, Webpack and Vite.
 I decided to complete the course by building a website from scratch using React: a site to calculate the carbon footprint of flights.
@@ -38,9 +38,9 @@ Users should be able to:
 - [Airport codes database](https://gist.github.com/tdreyno/4278655)
 - [axios](https://axios-http.com/)
 - [Flaticon](https://www.flaticon.com/) for the favicon and the logo
+- [classnames](https://www.npmjs.com/package/classnames)
+- [React Spinners](https://www.npmjs.com/package/react-spinners)
   <!-- - [React Router](https://reactrouter.com/en/main) -->
-  <!-- - [React Spinners](https://www.npmjs.com/package/react-spinners) -->
-  <!-- - [classnames](https://www.npmjs.com/package/classnames) -->
 
 ## Author
 

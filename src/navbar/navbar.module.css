@@ -7,6 +7,10 @@
   margin: 0 auto;
 }
 
+.navbarContainer > a {
+  text-decoration: none;
+}
+
 .logo {
   width: 25px;
   filter: drop-shadow(var(--nav-shadow));

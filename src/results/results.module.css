@@ -21,6 +21,11 @@
   margin-bottom: 8px;
 }
 
+.error {
+  margin-top: 60px;
+  text-align: center;
+}
+
 @media screen and (min-width: 700px) {
   .results {
     margin-top: 30px;

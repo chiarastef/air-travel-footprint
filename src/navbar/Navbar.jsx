@@ -6,8 +6,14 @@ import style from "./navbar.module.css";
 const Navbar = () => {
   return (
     <nav className={style.navbarContainer}>
-      <img src={logo} alt="Air Travel Footprint Logo" className={style.logo} />
-      <span className={style.title}>Air Travel Footprint</span>
+      <a href="/">
+        <img
+          src={logo}
+          alt="Air Travel Footprint Logo"
+          className={style.logo}
+        />
+        <span className={style.title}>Air Travel Footprint</span>
+      </a>
     </nav>
   );
 };
