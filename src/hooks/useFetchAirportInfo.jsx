@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 export const useFetchAirportInfo = (query, token) => {
-  const [info, setInfo] = React.useState([]);
+  const [airportInfo, setAirportInfo] = React.useState([]);
 
   // Airports data from Amadeus Airport & City Search API (https://developers.amadeus.com/self-service/category/air/api-doc/airport-and-city-search)
   React.useEffect(() => {
@@ -17,8 +17,7 @@ export const useFetchAirportInfo = (query, token) => {
           }
         )
         .then(function (response) {
-          const resp = response.data.data;
-          setInfo(resp);
+          setAirportInfo(response.data.data);
         })
         .catch(function (error) {
           console.log(error);
@@ -26,5 +25,5 @@ export const useFetchAirportInfo = (query, token) => {
     }
   }, [query]);
 
-  return [info];
+  return { airportInfo };
 };

@@ -34,8 +34,8 @@ Users should be able to:
 - JavaScript
 - React
 - [Vite](https://vitejs.dev/)
+- [Amadeus Airport & City Search API](https://developers.amadeus.com/self-service/category/air/api-doc/airport-and-city-search)
 - [GoClimate API](https://api.goclimate.com/docs)
-- [Airport codes database](https://gist.github.com/tdreyno/4278655)
 - [axios](https://axios-http.com/)
 - [Flaticon](https://www.flaticon.com/) for the favicon and the logo
 - [classnames](https://www.npmjs.com/package/classnames)

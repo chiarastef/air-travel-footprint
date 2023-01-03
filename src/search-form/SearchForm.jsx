@@ -12,13 +12,14 @@ import { useGetToken } from "../hooks/useGetToken";
 
 import Dropdown from "../dropdown/dropdown";
 import Results from "../results/results";
+
 import style from "./search-form.module.css";
 
 const SearchForm = () => {
   const [from, setFrom] = React.useState("");
-  const [isFromSelected, setIsFromSelected] = React.useState(false);
+  const [showFromDropdown, setShowFromDropdown] = React.useState(false);
   const [to, setTo] = React.useState("");
-  const [isToSelected, setIsToSelected] = React.useState(false);
+  const [showToDropdown, setShowToDropdown] = React.useState(false);
   const [isFrom, setIsFrom] = React.useState(null);
   const [passengers, setPassengers] = React.useState("");
   const [cabinClass, setCabinClass] = React.useState("");
@@ -51,50 +52,70 @@ const SearchForm = () => {
     right: `${window.innerWidth - right}px`,
   };
 
+  // Select input to get size for dropdown
   React.useEffect(() => {
-    setPosition(isFrom ? fromInput : toInput);
-    window.addEventListener("resize", () => {
+    const selectInput = () => {
       setPosition(isFrom ? fromInput : toInput);
-    });
+    };
+
+    selectInput();
+    window.addEventListener("resize", selectInput);
+
+    return () => window.removeEventListener("resize", selectItem);
   }, [isFrom]);
 
   // Select airport from dropdown
   const selectItem = (e) => {
     if (e.target.parentNode.id === "fromSuggestions") {
       setFrom(e.target.innerText);
-      setIsFromSelected(true);
+      setShowFromDropdown(false);
     } else if (e.target.parentNode.id === "toSuggestions") {
       setTo(e.target.innerText);
-      setIsToSelected(true);
+      setShowToDropdown(false);
     }
   };
 
-  const handleChange = (e) => {
-    // Capitalized first letter of query
-    const query = e.target.value;
-    const firstLetter = query.charAt(0).toUpperCase();
-    const queryCapitalized = firstLetter + query.substring(1);
+  // Hide dropdown suggestions when user clicks elsewhere
+  React.useEffect(() => {
+    const hideDropdown = (e) => {
+      if (e.target.id == !"from" || e.target.id == !"to") {
+        setShowFromDropdown(false);
+        setShowToDropdown(false);
+        console.log("click");
+      }
+    };
 
+    // Add event listener only if dropdown is showing
+    if (showFromDropdown || showToDropdown) {
+      document.addEventListener("click", hideDropdown);
+    }
+
+    return () => document.removeEventListener("click", hideDropdown);
+  }, [showFromDropdown, showToDropdown]);
+
+  // Set from and to queries
+  const handleChange = (e) => {
     if (e.target.id === "from") {
-      setIsFromSelected(false);
+      setShowFromDropdown(true);
       setIsFrom(true);
-      setFrom(queryCapitalized);
+      setFrom(e.target.value);
     } else if (e.target.id === "to") {
-      setIsToSelected(false);
+      setShowToDropdown(true);
       setIsFrom(false);
-      setTo(queryCapitalized);
+      setTo(e.target.value);
     }
   };
 
   // Calculate footprint and show results
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    // Set codes to get footprint info
     setCodes({
       origin: from.slice(0, 3),
       destination: to.slice(0, 3),
     });
 
+    // Set data to send to results component
     setSearchData({
       from,
       to,
@@ -102,6 +123,7 @@ const SearchForm = () => {
       cabinClass,
     });
 
+    // Show results info
     setShowResults(true);
 
     // Reset form
@@ -128,7 +150,7 @@ const SearchForm = () => {
               onChange={handleChange}
               ref={fromInput}
             />
-            {from && !isFromSelected && (
+            {from && showFromDropdown && (
               <ul
                 id="fromSuggestions"
                 className={style.dropdown}
@@ -151,7 +173,7 @@ const SearchForm = () => {
               onChange={handleChange}
               ref={toInput}
             />
-            {to && !isToSelected && (
+            {to && showToDropdown && (
               <ul
                 id="toSuggestions"
                 className={style.dropdown}

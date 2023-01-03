@@ -21,7 +21,7 @@
   text-align: left;
   font-size: 13px;
   background-color: #dedede;
-  max-height: 60px;
+  max-height: 80px;
   border-radius: 0 0 4px 4px;
   padding: 5px 7px;
   box-shadow: 2px 3px 20px 0px rgba(0, 0, 0, 0.2);
@@ -73,5 +73,9 @@
   .formElement {
     width: 50%;
     margin-bottom: 20px;
+  }
+
+  .dropdown {
+    max-height: 60px;
   }
 }
