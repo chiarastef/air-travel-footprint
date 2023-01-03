@@ -23,19 +23,20 @@ const SearchForm = () => {
   const [passengers, setPassengers] = React.useState("");
   const [cabinClass, setCabinClass] = React.useState("");
   const [codes, setCodes] = React.useState(null);
+  const [searchData, setSearchData] = React.useState({});
   const [showResults, setShowResults] = React.useState(false);
 
   // Get api access token
   const { token } = useGetToken();
 
+  // Inputs for drowpdown suggestions
+  const fromInput = React.useRef(null);
+  const toInput = React.useRef(null);
+
   // Dropdown suggestions position
   const [top, setTop] = React.useState("");
   const [left, setLeft] = React.useState("");
   const [right, setRight] = React.useState("");
-
-  // Inputs for drowpdown suggestions
-  const fromInput = React.useRef(null);
-  const toInput = React.useRef(null);
 
   // Set position of dropdown
   const setPosition = (element) => {
@@ -94,15 +95,21 @@ const SearchForm = () => {
       destination: to.slice(0, 3),
     });
 
+    setSearchData({
+      from,
+      to,
+      passengers,
+      cabinClass,
+    });
+
     setShowResults(true);
 
     // Reset form
+    setFrom("");
+    setTo("");
+    setPassengers("");
+    setCabinClass("");
   };
-
-  // Rerender results component when form input info change
-  React.useEffect(() => {
-    setShowResults(false);
-  }, [from, to, passengers, cabinClass]);
 
   return (
     <>
@@ -113,7 +120,7 @@ const SearchForm = () => {
             <TextField
               sx={{ m: 1, width: "100%" }}
               id="from"
-              label="From (city)"
+              label="From (city or airport)"
               variant="standard"
               size="small"
               required
@@ -136,7 +143,7 @@ const SearchForm = () => {
             <TextField
               sx={{ m: 1, width: "100%" }}
               id="to"
-              label="To (city)"
+              label="To (city or airport)"
               variant="standard"
               size="small"
               required
@@ -196,15 +203,7 @@ const SearchForm = () => {
           calculate
         </Button>
       </form>
-      {showResults && (
-        <Results
-          codes={codes}
-          from={from}
-          to={to}
-          passengers={passengers}
-          cabinClass={cabinClass}
-        />
-      )}
+      {showResults && <Results codes={codes} searchData={searchData} />}
     </>
   );
 };

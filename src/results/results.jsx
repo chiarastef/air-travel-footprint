@@ -5,8 +5,8 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { useFetchFootprint } from "../hooks/useFetchFootprint";
 import style from "./results.module.css";
 
-const Results = ({ codes, from, to, passengers, cabinClass }) => {
-  const { footprint, loaded } = useFetchFootprint(codes, cabinClass);
+const Results = ({ codes, searchData }) => {
+  const { footprint, loaded } = useFetchFootprint(codes, searchData.cabinClass);
 
   const spinnerStyle = {
     display: "block",
@@ -16,10 +16,12 @@ const Results = ({ codes, from, to, passengers, cabinClass }) => {
 
   // Format cabin class
   const cabinClassFormatted =
-    cabinClass === "premium_economy" ? "premium economy" : cabinClass;
+    searchData.cabinClass === "premium_economy"
+      ? "premium economy"
+      : searchData.cabinClass;
 
   // Calculate total footprint based on number of passengers
-  const totalFootprint = footprint * passengers;
+  const totalFootprint = footprint * searchData.passengers;
 
   if (!loaded) {
     return (
@@ -43,15 +45,15 @@ const Results = ({ codes, from, to, passengers, cabinClass }) => {
       <div className={style.results}>
         <div className={style.gridItem}>
           <div>Departure Airport</div>
-          <div>{from}</div>
+          <div>{searchData.from}</div>
         </div>
         <div className={style.gridItem}>
           <div>Arrival Airport</div>
-          <div>{to}</div>
+          <div>{searchData.to}</div>
         </div>
         <div className={style.gridItem}>
           <div>Passengers</div>
-          <div>{passengers}</div>
+          <div>{searchData.passengers}</div>
         </div>
         <div className={style.gridItem}>
           <div>Cabin Class</div>
