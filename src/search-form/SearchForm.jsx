@@ -1,5 +1,4 @@
 import React from "react";
-import { nanoid } from "nanoid";
 
 // Material UI - https://v4.mui.com/
 import TextField from "@mui/material/TextField";
@@ -9,7 +8,9 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 
-import { useFetchAirportInfo } from "../hooks/useFetchAirportInfo";
+import { useGetToken } from "../hooks/useGetToken";
+
+import Dropdown from "../dropdown/dropdown";
 import Results from "../results/results";
 import style from "./search-form.module.css";
 
@@ -23,6 +24,9 @@ const SearchForm = () => {
   const [cabinClass, setCabinClass] = React.useState("");
   const [codes, setCodes] = React.useState(null);
   const [showResults, setShowResults] = React.useState(false);
+
+  // Get api access token
+  const { token } = useGetToken();
 
   // Dropdown suggestions position
   const [top, setTop] = React.useState("");
@@ -52,10 +56,6 @@ const SearchForm = () => {
       setPosition(isFrom ? fromInput : toInput);
     });
   }, [isFrom]);
-
-  // Get departure and arrival airports' Info
-  const [fromInfo] = useFetchAirportInfo(from);
-  const [toInfo] = useFetchAirportInfo(to);
 
   // Select airport from dropdown
   const selectItem = (e) => {
@@ -127,13 +127,7 @@ const SearchForm = () => {
                 className={style.dropdown}
                 style={styleDropdown}
               >
-                {fromInfo.map((item) => {
-                  return (
-                    <li key={nanoid()} onClick={selectItem}>
-                      {item.iataCode} - {item.name} ({item.address.cityName})
-                    </li>
-                  );
-                })}
+                <Dropdown token={token} query={from} selectItem={selectItem} />
               </ul>
             )}
           </div>
@@ -156,13 +150,7 @@ const SearchForm = () => {
                 className={style.dropdown}
                 style={styleDropdown}
               >
-                {toInfo.map((item) => {
-                  return (
-                    <li key={nanoid()} onClick={selectItem}>
-                      {item.iataCode} - {item.name} ({item.address.cityName})
-                    </li>
-                  );
-                })}
+                <Dropdown token={token} query={to} selectItem={selectItem} />
               </ul>
             )}
           </div>

@@ -1,32 +1,15 @@
 import React from "react";
 import axios from "axios";
 
-export const useFetchAirportInfo = (city) => {
+export const useFetchAirportInfo = (query, token) => {
   const [info, setInfo] = React.useState([]);
-  const [token, setToken] = React.useState("");
-
-  // Get api access token
-  React.useEffect(() => {
-    console.log("token");
-    fetch("https://test.api.amadeus.com/v1/security/oauth2/token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: `grant_type=client_credentials&client_id=${
-        import.meta.env.VITE_AIRLABS_API_KEY
-      }&client_secret=${import.meta.env.VITE_AIRLABS_API_SECRET}`,
-    })
-      .then((response) => response.json())
-      .then((data) => setToken(data.access_token));
-  }, []);
 
   // Airports data from Amadeus Airport & City Search API (https://developers.amadeus.com/self-service/category/air/api-doc/airport-and-city-search)
   React.useEffect(() => {
-    if (city.length > 0) {
+    if (query.length > 0) {
       axios
         .get(
-          `https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${city}`,
+          `https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${query}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -41,7 +24,7 @@ export const useFetchAirportInfo = (city) => {
           console.log(error);
         });
     }
-  }, [city]);
+  }, [query]);
 
   return [info];
 };
