@@ -21,7 +21,7 @@ const dropdown = ({ token, query, selectItem }) => {
     );
   }
 
-  if (airportInfo.length < 0) {
+  if (airportInfo.length < 1) {
     return <li>No results</li>;
   }
 

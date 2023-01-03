@@ -4,7 +4,7 @@ This is the final project from the Front End Development Master offered by the o
 
 During the course I had the chance to learn HTML, CSS, Sass, Bootstrap, JavaScript, React, Webpack and Vite.
 I decided to complete the course by building a website from scratch using React: a site to calculate the carbon footprint of flights.
-I chose this project because I believe that measuring our carbon footprint is the first step we can take to improve and adapt our lifestyle in order to reduce our emissions.
+I chose this project because I believe that measuring our carbon footprint is the first step to improve and adapt our lifestyle in order to reduce our emissions.
 
 ## Link
 

@@ -12,7 +12,7 @@ const Navbar = () => {
           alt="Air Travel Footprint Logo"
           className={style.logo}
         />
-        <span className={style.title}>Air Travel Footprint</span>
+        <span className={style.title}>Air Travel Footprint Calculator</span>
       </a>
     </nav>
   );
