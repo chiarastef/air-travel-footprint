@@ -1,7 +1,7 @@
 .results {
-  margin-top: 20px;
   display: grid;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .gridItem {
@@ -10,14 +10,14 @@
 }
 
 .footprint {
-  grid-column: 1/-1;
   display: grid;
   gap: 10px;
+  grid-column: 1/-1;
 }
 
 /* grid section title (i.e. departure airport, arrival airport, etc.) */
 .gridItem > div:first-child {
-  color: var(--accent-color);
+  color: var(--primary-color);
   font-weight: bold;
   margin-bottom: 8px;
 }
@@ -71,6 +71,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Footprint information */
   .footprint > div:last-child {
     padding: 0 5px;
   }

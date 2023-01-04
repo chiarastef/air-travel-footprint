@@ -23,7 +23,7 @@ Users should be able to:
 - Type the name of a city or airport in the from and to input fields to see a list of airports to select from and click/tap on the one they want to select
 - Type the number of passengers and select the cabin class
 - Click or tap on the "calculate" button to see the footprint of that flight
-- See a table with information about the departure and arrival airports, the passenger(s), the cabin class and the footprint per passenger and the total footprint
+- See a table with information about the departure and arrival airports, the passenger(s), the cabin class, the footprint per passenger and the total footprint
 - Click or tap the "change search" button to be able to change the search queries and search again
 - Click or tap the "new search" button to make the results disappear and go back to the top of the page to make a new search
 

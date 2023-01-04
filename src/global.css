@@ -1,20 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap");
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Inter:wght@400;700&display=swap");
 
+/* Variables */
 :root {
-  --accent-color: #1565c0;
+  --primary-color: #1565c0;
   --nav-shadow: 1px 1px 2px #bbbbbb;
 }
 
+/* Reset */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
+/* Global */
 body {
-  background: linear-gradient(to top, #ace0f9 0%, #fff1eb 100%) fixed;
   font-family: "Inter", sans-serif;
   height: 100vh;
+  background: linear-gradient(to top, #ace0f9 0%, #fff1eb 100%) fixed;
 }
 
 .container {

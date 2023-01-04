@@ -19,7 +19,7 @@
 .title {
   font-family: "Caveat", cursive;
   font-size: 22px;
-  color: var(--accent-color);
+  color: var(--primary-color);
   text-shadow: var(--nav-shadow);
   margin-left: 12px;
 }

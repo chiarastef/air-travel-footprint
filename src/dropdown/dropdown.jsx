@@ -4,7 +4,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 
 import { useFetchAirportInfo } from "../hooks/useFetchAirportInfo";
 
-const dropdown = ({ token, query, selectItem }) => {
+const dropdown = ({ token, query, selectAirport }) => {
   // Get departure and arrival airports' info
   const { airportInfo, loaded } = useFetchAirportInfo(query, token);
 
@@ -29,7 +29,7 @@ const dropdown = ({ token, query, selectItem }) => {
     <>
       {airportInfo.map((item) => {
         return (
-          <li key={nanoid()} onClick={selectItem}>
+          <li key={nanoid()} onClick={selectAirport}>
             {item.iataCode} - {item.name} ({item.address.cityName})
           </li>
         );

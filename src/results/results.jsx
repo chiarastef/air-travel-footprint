@@ -4,12 +4,18 @@ import BeatLoader from "react-spinners/BeatLoader";
 import Button from "@mui/material/Button";
 
 import { useFetchFootprint } from "../hooks/useFetchFootprint";
+
 import style from "./results.module.css";
 
-const Results = ({ codes, searchQuery, changeSearchQuery, setNewSearch }) => {
+const Results = ({
+  codes,
+  searchQueries,
+  changeSearchQueries,
+  setNewSearch,
+}) => {
   const { footprint, loaded } = useFetchFootprint(
     codes,
-    searchQuery.cabinClass
+    searchQueries.cabinClass
   );
 
   const spinnerStyle = {
@@ -20,12 +26,12 @@ const Results = ({ codes, searchQuery, changeSearchQuery, setNewSearch }) => {
 
   // Format cabin class
   const cabinClassFormatted =
-    searchQuery.cabinClass === "premium_economy"
+    searchQueries.cabinClass === "premium_economy"
       ? "premium economy"
-      : searchQuery.cabinClass;
+      : searchQueries.cabinClass;
 
   // Calculate total footprint based on number of passengers
-  const totalFootprint = footprint * searchQuery.passengers;
+  const totalFootprint = footprint * searchQueries.passengers;
 
   if (!loaded) {
     return (
@@ -40,7 +46,7 @@ const Results = ({ codes, searchQuery, changeSearchQuery, setNewSearch }) => {
     );
   }
 
-  if (loaded && footprint === null) {
+  if (footprint === null) {
     return <div className={style.error}>Sorry, no results for this search</div>;
   }
 
@@ -48,15 +54,15 @@ const Results = ({ codes, searchQuery, changeSearchQuery, setNewSearch }) => {
     <div className={style.results}>
       <div className={style.gridItem}>
         <div>Departure Airport</div>
-        <div>{searchQuery.from}</div>
+        <div>{searchQueries.from}</div>
       </div>
       <div className={style.gridItem}>
         <div>Arrival Airport</div>
-        <div>{searchQuery.to}</div>
+        <div>{searchQueries.to}</div>
       </div>
       <div className={style.gridItem}>
         <div>Passengers</div>
-        <div>{searchQuery.passengers}</div>
+        <div>{searchQueries.passengers}</div>
       </div>
       <div className={style.gridItem}>
         <div>Cabin Class</div>
@@ -76,7 +82,7 @@ const Results = ({ codes, searchQuery, changeSearchQuery, setNewSearch }) => {
           variant="contained"
           sx={{ mt: 3, width: "100%" }}
           className={style.changeSearchBtn}
-          onClick={changeSearchQuery}
+          onClick={changeSearchQueries}
         >
           change search
         </Button>

@@ -19,8 +19,7 @@ export const useFetchFootprint = (codes, cabinClass) => {
         }
       )
       .then(function (response) {
-        const resp = response.data.footprint;
-        setFootprint(resp);
+        setFootprint(response.data.footprint);
         setLoaded(true);
       })
       .catch(function (error) {

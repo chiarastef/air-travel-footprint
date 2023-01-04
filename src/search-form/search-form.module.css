@@ -2,18 +2,17 @@
   margin: 0 auto;
 }
 
+.formRow {
+  display: flex;
+  flex-direction: column;
+}
+
 .formElement {
   margin-bottom: 10px;
 }
 
 .formElement > div {
-  text-align: left;
   margin: 0;
-}
-
-.formRow {
-  display: flex;
-  flex-direction: column;
 }
 
 .dropdown {
@@ -35,6 +34,7 @@
   padding: 2px 0;
 }
 
+/* Add border bottom and margin to every list item except last one */
 .dropdown > li:not(li:last-of-type) {
   border-bottom: 1px solid #cfcece;
   margin-bottom: 2px;
@@ -45,7 +45,7 @@
     text-align: center;
   }
 
-  .formElement div:first-child,
+  .formElement > div,
   .searchFormContainer button {
     width: 80%;
   }
@@ -65,7 +65,7 @@
     margin-right: 25px;
   }
 
-  .formElement div:first-child,
+  .formElement > div,
   .searchFormContainer button {
     width: 100%;
   }

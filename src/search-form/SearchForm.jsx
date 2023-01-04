@@ -24,7 +24,7 @@ const SearchForm = () => {
   const [passengers, setPassengers] = React.useState("");
   const [cabinClass, setCabinClass] = React.useState("");
   const [codes, setCodes] = React.useState(null);
-  const [searchQuery, setSearchQuery] = React.useState({});
+  const [searchQueries, setSearchQueries] = React.useState({});
   const [showResults, setShowResults] = React.useState(false);
 
   // Get api access token
@@ -61,11 +61,11 @@ const SearchForm = () => {
     selectInput();
     window.addEventListener("resize", selectInput);
 
-    return () => window.removeEventListener("resize", selectItem);
+    return () => window.removeEventListener("resize", selectInput);
   }, [isFrom]);
 
   // Select airport from dropdown
-  const selectItem = (e) => {
+  const selectAirport = (e) => {
     if (e.target.parentNode.id === "fromSuggestions") {
       setFrom(e.target.innerText);
       setShowFromDropdown(false);
@@ -83,7 +83,6 @@ const SearchForm = () => {
         setShowToDropdown(false);
       }
     };
-
     // Add event listener only if dropdown is showing
     if (showFromDropdown || showToDropdown) {
       document.addEventListener("click", hideDropdown);
@@ -113,18 +112,15 @@ const SearchForm = () => {
       origin: from.slice(0, 3),
       destination: to.slice(0, 3),
     });
-
-    // Set data to send to results component
-    setSearchQuery({
+    // Set queries to send to results component
+    setSearchQueries({
       from,
       to,
       passengers,
       cabinClass,
     });
-
     // Show results info
     setShowResults(true);
-
     // Reset form
     setFrom("");
     setTo("");
@@ -132,13 +128,14 @@ const SearchForm = () => {
     setCabinClass("");
   };
 
-  // Change search query after search results appear
-  const changeSearchQuery = () => {
+  // Change search queries after search results appear
+  const changeSearchQueries = () => {
     setShowResults(false);
-    setFrom(searchQuery.from);
-    setTo(searchQuery.to);
-    setPassengers(searchQuery.passengers);
-    setCabinClass(searchQuery.cabinClass);
+
+    setFrom(searchQueries.from);
+    setTo(searchQueries.to);
+    setPassengers(searchQueries.passengers);
+    setCabinClass(searchQueries.cabinClass);
   };
 
   // New Search
@@ -163,13 +160,18 @@ const SearchForm = () => {
               onChange={handleChange}
               ref={fromInput}
             />
+            {/* From dropdown */}
             {from && showFromDropdown && (
               <ul
                 id="fromSuggestions"
                 className={style.dropdown}
                 style={styleDropdown}
               >
-                <Dropdown token={token} query={from} selectItem={selectItem} />
+                <Dropdown
+                  token={token}
+                  query={from}
+                  selectAirport={selectAirport}
+                />
               </ul>
             )}
           </div>
@@ -186,13 +188,18 @@ const SearchForm = () => {
               onChange={handleChange}
               ref={toInput}
             />
+            {/* To dropdown */}
             {to && showToDropdown && (
               <ul
                 id="toSuggestions"
                 className={style.dropdown}
                 style={styleDropdown}
               >
-                <Dropdown token={token} query={to} selectItem={selectItem} />
+                <Dropdown
+                  token={token}
+                  query={to}
+                  selectAirport={selectAirport}
+                />
               </ul>
             )}
           </div>
@@ -238,11 +245,12 @@ const SearchForm = () => {
           calculate
         </Button>
       </form>
+      {/* Results */}
       {showResults && (
         <Results
           codes={codes}
-          searchQuery={searchQuery}
-          changeSearchQuery={changeSearchQuery}
+          searchQueries={searchQueries}
+          changeSearchQueries={changeSearchQueries}
           setNewSearch={setNewSearch}
         />
       )}
