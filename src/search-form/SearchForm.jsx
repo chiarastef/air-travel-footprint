@@ -141,6 +141,11 @@ const SearchForm = () => {
     setCabinClass(searchQuery.cabinClass);
   };
 
+  // New Search
+  const setNewSearch = () => {
+    setShowResults(false);
+  };
+
   return (
     <>
       <form className={style.searchFormContainer} onSubmit={handleSubmit}>
@@ -238,6 +243,7 @@ const SearchForm = () => {
           codes={codes}
           searchQuery={searchQuery}
           changeSearchQuery={changeSearchQuery}
+          setNewSearch={setNewSearch}
         />
       )}
     </>

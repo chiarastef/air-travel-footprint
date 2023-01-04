@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import { useFetchFootprint } from "../hooks/useFetchFootprint";
 import style from "./results.module.css";
 
-const Results = ({ codes, searchQuery, changeSearchQuery }) => {
+const Results = ({ codes, searchQuery, changeSearchQuery, setNewSearch }) => {
   const { footprint, loaded } = useFetchFootprint(
     codes,
     searchQuery.cabinClass
@@ -70,14 +70,26 @@ const Results = ({ codes, searchQuery, changeSearchQuery }) => {
         <div>Total Footprint</div>
         <div>{`${totalFootprint} kg of CO2`}</div>
       </div>
-      <Button
-        type="button"
-        variant="contained"
-        sx={{ mt: 3, width: "100%" }}
-        onClick={changeSearchQuery}
-      >
-        change data
-      </Button>
+      <div className={style.gridItem}>
+        <Button
+          type="button"
+          variant="contained"
+          sx={{ mt: 3, width: "100%" }}
+          className={style.changeSearchBtn}
+          onClick={changeSearchQuery}
+        >
+          change search
+        </Button>
+        <Button
+          type="button"
+          variant="contained"
+          sx={{ mt: 3, width: "100%" }}
+          className={style.newSearchBtn}
+          onClick={setNewSearch}
+        >
+          new search
+        </Button>
+      </div>
     </div>
   );
 };
