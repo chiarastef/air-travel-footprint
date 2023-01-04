@@ -9,7 +9,8 @@ export const useFetchAirportInfo = (query, token) => {
   React.useEffect(() => {
     setLoaded(false);
 
-    if (query.length > 0) {
+    // Call API only after user types at least 3 characters to avoid sending too many requests and get a 429 error
+    if (query.length > 2) {
       axios
         .get(
           `https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${query}`,

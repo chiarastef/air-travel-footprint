@@ -24,7 +24,7 @@ const SearchForm = () => {
   const [passengers, setPassengers] = React.useState("");
   const [cabinClass, setCabinClass] = React.useState("");
   const [codes, setCodes] = React.useState(null);
-  const [searchData, setSearchData] = React.useState({});
+  const [searchQuery, setSearchQuery] = React.useState({});
   const [showResults, setShowResults] = React.useState(false);
 
   // Get api access token
@@ -81,7 +81,6 @@ const SearchForm = () => {
       if (e.target.id == !"from" || e.target.id == !"to") {
         setShowFromDropdown(false);
         setShowToDropdown(false);
-        console.log("click");
       }
     };
 
@@ -116,7 +115,7 @@ const SearchForm = () => {
     });
 
     // Set data to send to results component
-    setSearchData({
+    setSearchQuery({
       from,
       to,
       passengers,
@@ -131,6 +130,15 @@ const SearchForm = () => {
     setTo("");
     setPassengers("");
     setCabinClass("");
+  };
+
+  // Change search query after search results appear
+  const changeSearchQuery = () => {
+    setShowResults(false);
+    setFrom(searchQuery.from);
+    setTo(searchQuery.to);
+    setPassengers(searchQuery.passengers);
+    setCabinClass(searchQuery.cabinClass);
   };
 
   return (
@@ -225,7 +233,13 @@ const SearchForm = () => {
           calculate
         </Button>
       </form>
-      {showResults && <Results codes={codes} searchData={searchData} />}
+      {showResults && (
+        <Results
+          codes={codes}
+          searchQuery={searchQuery}
+          changeSearchQuery={changeSearchQuery}
+        />
+      )}
     </>
   );
 };

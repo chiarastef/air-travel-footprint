@@ -40,7 +40,6 @@ Users should be able to:
 - [Flaticon](https://www.flaticon.com/) for the favicon and the logo
 - [classnames](https://www.npmjs.com/package/classnames)
 - [React Spinners](https://www.npmjs.com/package/react-spinners)
-  <!-- - [React Router](https://reactrouter.com/en/main) -->
 
 ## Author
 

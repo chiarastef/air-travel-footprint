@@ -1,12 +1,16 @@
 import React from "react";
 import classnames from "classnames";
 import BeatLoader from "react-spinners/BeatLoader";
+import Button from "@mui/material/Button";
 
 import { useFetchFootprint } from "../hooks/useFetchFootprint";
 import style from "./results.module.css";
 
-const Results = ({ codes, searchData }) => {
-  const { footprint, loaded } = useFetchFootprint(codes, searchData.cabinClass);
+const Results = ({ codes, searchQuery, changeSearchQuery }) => {
+  const { footprint, loaded } = useFetchFootprint(
+    codes,
+    searchQuery.cabinClass
+  );
 
   const spinnerStyle = {
     display: "block",
@@ -16,12 +20,12 @@ const Results = ({ codes, searchData }) => {
 
   // Format cabin class
   const cabinClassFormatted =
-    searchData.cabinClass === "premium_economy"
+    searchQuery.cabinClass === "premium_economy"
       ? "premium economy"
-      : searchData.cabinClass;
+      : searchQuery.cabinClass;
 
   // Calculate total footprint based on number of passengers
-  const totalFootprint = footprint * searchData.passengers;
+  const totalFootprint = footprint * searchQuery.passengers;
 
   if (!loaded) {
     return (
@@ -44,15 +48,15 @@ const Results = ({ codes, searchData }) => {
     <div className={style.results}>
       <div className={style.gridItem}>
         <div>Departure Airport</div>
-        <div>{searchData.from}</div>
+        <div>{searchQuery.from}</div>
       </div>
       <div className={style.gridItem}>
         <div>Arrival Airport</div>
-        <div>{searchData.to}</div>
+        <div>{searchQuery.to}</div>
       </div>
       <div className={style.gridItem}>
         <div>Passengers</div>
-        <div>{searchData.passengers}</div>
+        <div>{searchQuery.passengers}</div>
       </div>
       <div className={style.gridItem}>
         <div>Cabin Class</div>
@@ -66,6 +70,14 @@ const Results = ({ codes, searchData }) => {
         <div>Total Footprint</div>
         <div>{`${totalFootprint} kg of CO2`}</div>
       </div>
+      <Button
+        type="button"
+        variant="contained"
+        sx={{ mt: 3, width: "100%" }}
+        onClick={changeSearchQuery}
+      >
+        change data
+      </Button>
     </div>
   );
 };
