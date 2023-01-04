@@ -12,18 +12,20 @@ I chose this project because I believe that measuring our carbon footprint is th
 
 ## Screenshot
 
-<!-- <img src="./screenshots/-mobile-preview.png" alt=" mobile preview" width="25%"> <img src="./screenshots/-desktop-preview.png" alt=" desktop preview" width="60%">
-<img src="./screenshots/-preview.png" alt=" preview" width="48%"> <img src="./screenshots/-preview.png" alt="preview" width="48%"> -->
+<img src="./screenshots/air-travel-footprint-calculator-mobile-preview.png" alt="Air travel footprint calculator mobile preview" width="26%"> <img src="./screenshots/air-travel-footprint-calculator-desktop-preview.png" alt="Air travel footprint calculator desktop preview" width="70%">
+<img src="./screenshots/air-travel-footprint-calculator-search-preview.png" alt="Air travel footprint calculator search preview" width="70%">
 
 ## Project
 
 Users should be able to:
 
 - View the optimal layout for the content depending on their device’s screen size
-- Type the name of a city in the from and to input fields to see a list of airports to select from and click/tap on the one they want to select
+- Type the name of a city or airport in the from and to input fields to see a list of airports to select from and click/tap on the one they want to select
 - Type the number of passengers and select the cabin class
 - Click or tap on the "calculate" button to see the footprint of that flight
 - See a table with information about the departure and arrival airports, the passenger(s), the cabin class and the footprint per passenger and the total footprint
+- Click or tap the "change search" button to be able to change the search queries and search again
+- Click or tap the "new search" button to make the results disappear and go back to the top of the page to make a new search
 
 ## Built with
 
