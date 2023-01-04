@@ -18,6 +18,7 @@ const Results = ({
     searchQueries.cabinClass
   );
 
+  // Style for react spinner
   const spinnerStyle = {
     display: "block",
     textAlign: "center",

@@ -30,11 +30,11 @@ const SearchForm = () => {
   // Get api access token
   const { token } = useGetToken();
 
-  // Inputs for drowpdown suggestions
+  // Inputs for drowpdown
   const fromInput = React.useRef(null);
   const toInput = React.useRef(null);
 
-  // Dropdown suggestions position
+  // Dropdown position
   const [top, setTop] = React.useState("");
   const [left, setLeft] = React.useState("");
   const [right, setRight] = React.useState("");
