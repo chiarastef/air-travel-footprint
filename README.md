@@ -40,7 +40,6 @@ Users should be able to:
 - [GoClimate API](https://api.goclimate.com/docs)
 - [axios](https://axios-http.com/)
 - [Flaticon](https://www.flaticon.com/) for the favicon and the logo
-- [classnames](https://www.npmjs.com/package/classnames)
 - [React Spinners](https://www.npmjs.com/package/react-spinners)
 
 ## Author

@@ -1,22 +1,23 @@
 import React from "react";
-import classnames from "classnames";
 import BeatLoader from "react-spinners/BeatLoader";
-import Button from "@mui/material/Button";
+import { AppContext } from "../context";
 
-import { useFetchFootprint } from "../hooks/useFetchFootprint";
+import { useFetchFootprint } from "./hooks/useFetchFootprint";
+import { useChangeSearchQueries } from "./hooks/useChangeSearchQueries";
+
+import ResultsGridItem from "./atoms/ResultsGridItem";
+import ResultsButton from "./atoms/ResultsButton";
 
 import style from "./results.module.css";
 
-const Results = ({
-  codes,
-  searchQueries,
-  changeSearchQueries,
-  setNewSearch,
-}) => {
-  const { footprint, loaded } = useFetchFootprint(
-    codes,
-    searchQueries.cabinClass
-  );
+const Results = () => {
+  const { searchInfo, setShowResults } = React.useContext(AppContext);
+
+  // Get Footprint data
+  const { footprint, totalFootprint, loaded } = useFetchFootprint();
+
+  //Change search queries after searched already
+  const { changeSearchQueries } = useChangeSearchQueries();
 
   // Style for react spinner
   const spinnerStyle = {
@@ -27,12 +28,9 @@ const Results = ({
 
   // Format cabin class
   const cabinClassFormatted =
-    searchQueries.cabinClass === "premium_economy"
+    searchInfo.cabinClass === "premium_economy"
       ? "premium economy"
-      : searchQueries.cabinClass;
-
-  // Calculate total footprint based on number of passengers
-  const totalFootprint = footprint * searchQueries.passengers;
+      : searchInfo.cabinClass;
 
   if (!loaded) {
     return (
@@ -53,49 +51,39 @@ const Results = ({
 
   return (
     <div className={style.results}>
+      <ResultsGridItem
+        title={"Departure Airport"}
+        data={searchInfo.from}
+        isFootprint={false}
+      />
+      <ResultsGridItem
+        title={"Arrival Airport"}
+        data={searchInfo.to}
+        isFootprint={false}
+      />
+      <ResultsGridItem
+        title={"Passengers"}
+        data={searchInfo.passengers}
+        isFootprint={false}
+      />
+      <ResultsGridItem
+        title={"Cabin Class"}
+        data={cabinClassFormatted}
+        isFootprint={false}
+      />
+      <ResultsGridItem
+        title={"Footprint per passenger"}
+        data={footprint}
+        isFootprint={true}
+      />
+      <ResultsGridItem
+        title={"Total footprint"}
+        data={totalFootprint}
+        isFootprint={true}
+      />
       <div className={style.gridItem}>
-        <div>Departure Airport</div>
-        <div>{searchQueries.from}</div>
-      </div>
-      <div className={style.gridItem}>
-        <div>Arrival Airport</div>
-        <div>{searchQueries.to}</div>
-      </div>
-      <div className={style.gridItem}>
-        <div>Passengers</div>
-        <div>{searchQueries.passengers}</div>
-      </div>
-      <div className={style.gridItem}>
-        <div>Cabin Class</div>
-        <div>{cabinClassFormatted}</div>
-      </div>
-      <div className={classnames(style.gridItem, style.footprint)}>
-        <div>Footprint per passenger</div>
-        <div>{`${footprint} kg of CO2`}</div>
-      </div>
-      <div className={classnames(style.gridItem, style.footprint)}>
-        <div>Total Footprint</div>
-        <div>{`${totalFootprint} kg of CO2`}</div>
-      </div>
-      <div className={style.gridItem}>
-        <Button
-          type="button"
-          variant="contained"
-          sx={{ mt: 3, width: "100%" }}
-          className={style.changeSearchBtn}
-          onClick={changeSearchQueries}
-        >
-          change search
-        </Button>
-        <Button
-          type="button"
-          variant="contained"
-          sx={{ mt: 3, width: "100%" }}
-          className={style.newSearchBtn}
-          onClick={setNewSearch}
-        >
-          new search
-        </Button>
+        <ResultsButton text="change search" func={changeSearchQueries} />
+        <ResultsButton text="new search" func={() => setShowResults(false)} />
       </div>
     </div>
   );
