@@ -2,14 +2,15 @@ import React from "react";
 import { nanoid } from "nanoid";
 import BeatLoader from "react-spinners/BeatLoader";
 
-import { useFetchAirportInfo } from "../hooks/useFetchAirportInfo";
-
 import style from "../search-form.module.css";
 
-const dropdown = ({ styleDropdown, isFromInput, selectAirport }) => {
-  // Get departure and arrival airports' info
-  const { airportInfo, loaded } = useFetchAirportInfo(isFromInput);
-
+const dropdown = ({
+  styleDropdown,
+  isFromInput,
+  airportInfo,
+  loaded,
+  selectAirport,
+}) => {
   if (!loaded) {
     return (
       <ul
@@ -50,7 +51,7 @@ const dropdown = ({ styleDropdown, isFromInput, selectAirport }) => {
       {airportInfo.map((item) => {
         return (
           <li key={nanoid()} onClick={selectAirport}>
-            {item.iataCode} - {item.name} ({item.address.cityName})
+            {item.code} - {item.name} ({item.city})
           </li>
         );
       })}

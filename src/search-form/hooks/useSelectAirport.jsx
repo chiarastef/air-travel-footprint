@@ -2,22 +2,14 @@ import React from "react";
 import { AppContext } from "../../context";
 
 export const useSelectAirport = () => {
-  const { setSearchQueries, setShowDropdown } = React.useContext(AppContext);
+  const { dispatch } = React.useContext(AppContext);
 
-  // Select airport from dropdown: update search query and hide dropdown
+  // Select airport from dropdown
   const selectAirport = (e) => {
     if (e.target.parentNode.id === "fromSuggestions") {
-      setSearchQueries((prevState) => ({
-        ...prevState,
-        from: e.target.innerText,
-      }));
-      setShowDropdown((prevState) => ({ ...prevState, from: false }));
+      dispatch({ type: "SELECT_FROM_AIRPORT", value: e.target.innerText });
     } else if (e.target.parentNode.id === "toSuggestions") {
-      setSearchQueries((prevState) => ({
-        ...prevState,
-        to: e.target.innerText,
-      }));
-      setShowDropdown((prevState) => ({ ...prevState, to: false }));
+      dispatch({ type: "SELECT_TO_AIRPORT", value: e.target.innerText });
     }
   };
 

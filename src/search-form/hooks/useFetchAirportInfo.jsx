@@ -2,43 +2,40 @@ import React from "react";
 import axios from "axios";
 import { AppContext } from "../../context";
 
-import { useGetToken } from "./useGetToken";
-
 export const useFetchAirportInfo = (isFromInput) => {
-  const { searchQueries } = React.useContext(AppContext);
+  const { state } = React.useContext(AppContext);
+  const { searchQueries, showDropdown } = state;
 
   const [airportInfo, setAirportInfo] = React.useState([]);
-  const [loaded, setLoaded] = React.useState(false);
+  const [airportInfoLoaded, setAirportInfoLoaded] = React.useState(false);
 
   const query = isFromInput ? searchQueries.from : searchQueries.to;
+  const capitalizedQuery = query.charAt(0).toUpperCase() + query.slice(1);
 
-  // Get api access token
-  const { token } = useGetToken();
+  const isDropdownShowing = isFromInput ? showDropdown.from : showDropdown.to;
 
-  // Airports data from Amadeus Airport & City Search API (https://developers.amadeus.com/self-service/category/air/api-doc/airport-and-city-search)
+  // Airport Codes from https://gist.github.com/tdreyno/4278655
   React.useEffect(() => {
-    setLoaded(false);
+    // Fetch data only when dropdown is showing
+    if (isDropdownShowing) {
+      setAirportInfoLoaded(false);
 
-    // Call API only after user types at least 3 characters to avoid sending too many requests and get a 429 error
-    if (query.length > 2) {
       axios
         .get(
-          `https://test.api.amadeus.com/v1/reference-data/locations?subType=AIRPORT&keyword=${query}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          "https://gist.githubusercontent.com/tdreyno/4278655/raw/755b1cfc5ded72d7b45f97b9c7295d525be18780/airports.json"
         )
-        .then(function (response) {
-          setAirportInfo(response.data.data);
-          setLoaded(true);
+        .then((resp) => {
+          setAirportInfo(
+            resp.data.filter((el) => el.city.startsWith(capitalizedQuery))
+          );
+          setAirportInfoLoaded(true);
         })
-        .catch(function (error) {
+        .catch((error) => {
+          setAirportInfoLoaded(true);
           console.log(error);
         });
     }
   }, [query]);
 
-  return { airportInfo, loaded };
+  return { airportInfo, airportInfoLoaded };
 };

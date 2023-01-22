@@ -7,14 +7,15 @@ import TextField from "@mui/material/TextField";
 import style from "../search-form.module.css";
 
 const TextInput = ({ isFromInput, handleChange }) => {
-  const { fromInput, toInput, searchQueries } = React.useContext(AppContext);
+  const { fromInput, toInput, state } = React.useContext(AppContext);
+  const { searchQueries } = state;
 
   return (
     <div className={style.formElement}>
       <TextField
         sx={{ m: 1, width: "100%" }}
         id={isFromInput ? "from" : "to"}
-        label={`${isFromInput ? "From" : "To"} (city or airport)`}
+        label={`${isFromInput ? "From" : "To"} (city)`}
         variant="standard"
         size="small"
         required

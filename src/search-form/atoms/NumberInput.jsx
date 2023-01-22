@@ -6,8 +6,9 @@ import TextField from "@mui/material/TextField";
 
 import style from "../search-form.module.css";
 
-const NumberInput = () => {
-  const { searchQueries, setSearchQueries } = React.useContext(AppContext);
+const NumberInput = ({ handleChange }) => {
+  const { state } = React.useContext(AppContext);
+  const { searchQueries } = state;
 
   return (
     <div className={style.formElement}>
@@ -20,12 +21,7 @@ const NumberInput = () => {
         size="small"
         required
         value={searchQueries.passengers}
-        onChange={(e) =>
-          setSearchQueries((prevState) => ({
-            ...prevState,
-            passengers: e.target.value,
-          }))
-        }
+        onChange={handleChange}
       />
     </div>
   );

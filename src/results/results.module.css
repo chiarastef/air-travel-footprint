@@ -34,10 +34,6 @@
 /* change search and new search buttons */
 .gridItem > button {
   font-size: 13px;
-  margin-top: 0;
-}
-
-.gridItem > .newSearchBtn {
   margin-top: 10px;
 }
 

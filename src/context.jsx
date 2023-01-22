@@ -1,51 +1,26 @@
 import React from "react";
 
+import { reducer } from "./reducer";
+import { initialStates } from "./initialStates";
+
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
+  const cabinClasses = ["economy", "premium_economy", "business", "first"];
+
   const fromInput = React.useRef(null);
   const toInput = React.useRef(null);
 
-  // Controlled inputs values
-  const [searchQueries, setSearchQueries] = React.useState({
-    from: "",
-    to: "",
-    passengers: "",
-    cabinClass: "",
-  });
-  // Submitted search info
-  const [searchInfo, setSearchInfo] = React.useState({
-    from: "",
-    to: "",
-    passengers: "",
-    cabinClass: "",
-  });
-
-  const [airportsCodes, setAirportsCodes] = React.useState({
-    origini: "",
-    destination: "",
-  });
-  const [showDropdown, setShowDropdown] = React.useState({
-    from: false,
-    to: false,
-  });
-  const [showResults, setShowResults] = React.useState(false);
+  const [state, dispatch] = React.useReducer(reducer, initialStates);
 
   return (
     <AppContext.Provider
       value={{
+        cabinClasses,
         fromInput,
         toInput,
-        searchQueries,
-        setSearchQueries,
-        searchInfo,
-        setSearchInfo,
-        airportsCodes,
-        setAirportsCodes,
-        showResults,
-        setShowResults,
-        showDropdown,
-        setShowDropdown,
+        state,
+        dispatch,
       }}
     >
       {children}

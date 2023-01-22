@@ -2,22 +2,20 @@ import React from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 import { AppContext } from "../context";
 
-import { useFetchFootprint } from "./hooks/useFetchFootprint";
-import { useChangeSearchQueries } from "./hooks/useChangeSearchQueries";
-
 import ResultsGridItem from "./atoms/ResultsGridItem";
 import ResultsButton from "./atoms/ResultsButton";
 
 import style from "./results.module.css";
 
-const Results = () => {
-  const { searchInfo, setShowResults } = React.useContext(AppContext);
-
-  // Get Footprint data
-  const { footprint, totalFootprint, loaded } = useFetchFootprint();
-
-  //Change search queries after searched already
-  const { changeSearchQueries } = useChangeSearchQueries();
+const Results = ({
+  footprint,
+  totalFootprint,
+  loaded,
+  modifySearchQuery,
+  hideResults,
+}) => {
+  const { state } = React.useContext(AppContext);
+  const { searchInfo } = state;
 
   // Style for react spinner
   const spinnerStyle = {
@@ -82,8 +80,8 @@ const Results = () => {
         isFootprint={true}
       />
       <div className={style.gridItem}>
-        <ResultsButton text="change search" func={changeSearchQueries} />
-        <ResultsButton text="new search" func={() => setShowResults(false)} />
+        <ResultsButton text="change search" func={modifySearchQuery} />
+        <ResultsButton text="new search" func={hideResults} />
       </div>
     </div>
   );

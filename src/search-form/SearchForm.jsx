@@ -1,11 +1,6 @@
 import React from "react";
 import { AppContext } from "../context";
 
-import { useChangeTextInputs } from "./hooks/useChangeTextInputs";
-import { useSetDropdown } from "./hooks/useSetDropdown";
-import { useSelectAirport } from "./hooks/useSelectAirport";
-import { useSearchFlight } from "./hooks/useSearchFlight";
-
 import TextInput from "./atoms/TextInput";
 import Dropdown from "./atoms/Dropdown";
 import NumberInput from "./atoms/NumberInput";
@@ -14,50 +9,49 @@ import SubmitButton from "./atoms/SubmitButton";
 
 import style from "./search-form.module.css";
 
-const SearchForm = () => {
-  const { showDropdown } = React.useContext(AppContext);
-
-  // isFrom shows which input is changing (important to set responsive style to dropdown)
-  // handleChange updates search queries when user types
-  const { isFrom, handleChange } = useChangeTextInputs();
-
-  // Text inputs dropdowns' styles
-  const { styleDropdown } = useSetDropdown(isFrom);
-
-  // Select airport from dropdown
-  const { selectAirport } = useSelectAirport();
-
-  // Submit form and set data to calculate footprint
-  const { handleSubmit } = useSearchFlight();
+const SearchForm = ({
+  airportInfo,
+  loaded,
+  styleDropdown,
+  updateInputs,
+  selectAirport,
+  searchFlight,
+}) => {
+  const { state } = React.useContext(AppContext);
+  const { searchQueries, showDropdown } = state;
 
   return (
     <>
-      <form className={style.searchFormContainer} onSubmit={handleSubmit}>
+      <form className={style.searchFormContainer} onSubmit={searchFlight}>
         <div className={style.formRow}>
           {/* From */}
-          <TextInput isFromInput={true} handleChange={handleChange} />
-          {showDropdown.from && (
+          <TextInput isFromInput={true} handleChange={updateInputs} />
+          {showDropdown.from && searchQueries.from.length > 0 && (
             <Dropdown
               styleDropdown={styleDropdown}
               isFromInput={true}
+              airportInfo={airportInfo}
+              loaded={loaded}
               selectAirport={selectAirport}
             />
           )}
           {/* To */}
-          <TextInput isFromInput={false} handleChange={handleChange} />
-          {showDropdown.to && (
+          <TextInput isFromInput={false} handleChange={updateInputs} />
+          {showDropdown.to && searchQueries.to.length > 0 && (
             <Dropdown
               styleDropdown={styleDropdown}
               isFromInput={false}
+              airportInfo={airportInfo}
+              loaded={loaded}
               selectAirport={selectAirport}
             />
           )}
         </div>
         <div className={style.formRow}>
           {/* Passengers */}
-          <NumberInput />
+          <NumberInput handleChange={updateInputs} />
           {/* Cabin class */}
-          <SelectInput />
+          <SelectInput handleChange={updateInputs} />
         </div>
         <SubmitButton />
       </form>

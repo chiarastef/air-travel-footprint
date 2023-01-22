@@ -2,8 +2,9 @@ import React from "react";
 import { AppContext } from "../../context";
 
 export const useSetDropdown = (isFrom) => {
-  const { fromInput, toInput, showDropdown, setShowDropdown } =
-    React.useContext(AppContext);
+  const { fromInput, toInput, state, dispatch } = React.useContext(AppContext);
+
+  const { showDropdown } = state;
 
   const [dropdownPosition, setDropdownPosition] = React.useState({
     top: "",
@@ -40,7 +41,7 @@ export const useSetDropdown = (isFrom) => {
   React.useEffect(() => {
     const hideDropdown = (e) => {
       if (e.target.id == !"from" || e.target.id == !"to") {
-        setShowDropdown({ from: false, to: false });
+        dispatch({ type: "HIDE_DROPDOWN" });
       }
     };
 
