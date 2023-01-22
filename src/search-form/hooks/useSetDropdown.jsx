@@ -3,7 +3,6 @@ import { AppContext } from "../../context";
 
 export const useSetDropdown = (isFrom) => {
   const { fromInput, toInput, state, dispatch } = React.useContext(AppContext);
-
   const { showDropdown } = state;
 
   const [dropdownPosition, setDropdownPosition] = React.useState({

@@ -8,7 +8,7 @@ const ResultsGridItem = ({ title, data, isFootprint }) => {
       <div>{title}</div>
       <div>
         {data}
-        {isFootprint ? "kg of CO2" : ""}
+        {isFootprint ? " kg of CO2" : ""}
       </div>
     </div>
   );
