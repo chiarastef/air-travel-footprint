@@ -36,7 +36,7 @@ Users should be able to:
 - JavaScript
 - React
 - [Vite](https://vitejs.dev/)
-- [Airport Codes](https://gist.github.com/tdreyno/4278655)
+- [Airports Codes](https://gist.github.com/tdreyno/4278655)
 - [GoClimate API](https://api.goclimate.com/docs)
 - [axios](https://axios-http.com/)
 - [Flaticon](https://www.flaticon.com/) for the favicon and the logo
