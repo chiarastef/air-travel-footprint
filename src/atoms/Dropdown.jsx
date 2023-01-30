@@ -2,7 +2,7 @@ import React from "react";
 import { nanoid } from "nanoid";
 import BeatLoader from "react-spinners/BeatLoader";
 
-import style from "../search-form.module.css";
+import style from "../components/search-form/search-form.module.css";
 
 const dropdown = ({
   styleDropdown,

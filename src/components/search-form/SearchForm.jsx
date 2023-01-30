@@ -1,11 +1,11 @@
 import React from "react";
-import { AppContext } from "../context";
+import { AppContext } from "../../context";
 
-import TextInput from "./atoms/TextInput";
-import Dropdown from "./atoms/Dropdown";
-import NumberInput from "./atoms/NumberInput";
-import SelectInput from "./atoms/SelectInput";
-import SubmitButton from "./atoms/SubmitButton";
+import TextInput from "../../atoms/inputs/TextInput";
+import Dropdown from "../../atoms/Dropdown";
+import NumberInput from "../../atoms/inputs/NumberInput";
+import SelectInput from "../../atoms/inputs/SelectInput";
+import SubmitButton from "../../atoms/buttons/SubmitButton";
 
 import style from "./search-form.module.css";
 

@@ -8,7 +8,7 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-import style from "../search-form.module.css";
+import style from "../../components/search-form/search-form.module.css";
 
 const SelectInput = ({ handleChange }) => {
   const { cabinClasses, state } = React.useContext(AppContext);

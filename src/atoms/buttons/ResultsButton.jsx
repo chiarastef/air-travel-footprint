@@ -3,7 +3,7 @@ import React from "react";
 // Material UI - https://v4.mui.com/
 import Button from "@mui/material/Button";
 
-import style from "../results.module.css";
+import style from "../../components/results/results.module.css";
 
 const ResultsButton = ({ text, func }) => {
   return (

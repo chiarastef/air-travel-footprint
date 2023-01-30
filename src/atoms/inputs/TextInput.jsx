@@ -4,7 +4,7 @@ import { AppContext } from "../../context";
 // Material UI - https://v4.mui.com/
 import TextField from "@mui/material/TextField";
 
-import style from "../search-form.module.css";
+import style from "../../components/search-form/search-form.module.css";
 
 const TextInput = ({ isFromInput, handleChange }) => {
   const { fromInput, toInput, state } = React.useContext(AppContext);

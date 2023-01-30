@@ -1,9 +1,9 @@
 import React from "react";
 import BeatLoader from "react-spinners/BeatLoader";
-import { AppContext } from "../context";
+import { AppContext } from "../../context";
 
-import ResultsGridItem from "./atoms/ResultsGridItem";
-import ResultsButton from "./atoms/ResultsButton";
+import ResultsGridItem from "../../atoms/ResultsGridItem";
+import ResultsButton from "../../atoms/buttons/ResultsButton";
 
 import style from "./results.module.css";
 

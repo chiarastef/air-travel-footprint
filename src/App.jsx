@@ -2,20 +2,20 @@ import React from "react";
 import { AppContext } from "./context";
 
 // SEARCH FORM LOGIC
-import { useFetchAirportInfo } from "./search-form/hooks/useFetchAirportInfo";
-import { useSetDropdown } from "./search-form/hooks/useSetDropdown";
-import { useUpdateInputs } from "./search-form/hooks/useUpdateInputs";
-import { useSelectAirport } from "./search-form/hooks/useSelectAirport";
-import { useSearchFlight } from "./search-form/hooks/useSearchFlight";
+import { useFetchAirportInfo } from "./hooks/search-form/useFetchAirportInfo";
+import { useSetDropdown } from "./hooks/search-form/useSetDropdown";
+import { useUpdateInputs } from "./hooks/search-form/useUpdateInputs";
+import { useSelectAirport } from "./hooks/search-form/useSelectAirport";
+import { useSearchFlight } from "./hooks/search-form/useSearchFlight";
 
 // RESULTS LOGIC
-import { useFetchFootprint } from "./results/hooks/useFetchFootprint";
-import { useModifySearchQueries } from "./results/hooks/useModifySearchQueries";
-import { useHideResults } from "./results/hooks/useHideResults";
+import { useFetchFootprint } from "./hooks/results/useFetchFootprint";
+import { useModifySearchQueries } from "./hooks/results/useModifySearchQueries";
+import { useHideResults } from "./hooks/results/useHideResults";
 
-import Navbar from "./navbar/Navbar";
-import SearchForm from "./search-form/SearchForm";
-import Results from "./results/Results";
+import Navbar from "./components/navbar/Navbar";
+import SearchForm from "./components/search-form/SearchForm";
+import Results from "./components/results/Results";
 
 const App = () => {
   const { state } = React.useContext(AppContext);

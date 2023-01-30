@@ -1,6 +1,6 @@
 import React from "react";
 
-import style from "../results.module.css";
+import style from "../components/results/results.module.css";
 
 const ResultsGridItem = ({ title, data, isFootprint }) => {
   return (
